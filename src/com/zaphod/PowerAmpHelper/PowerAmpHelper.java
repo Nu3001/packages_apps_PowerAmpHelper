@@ -24,13 +24,17 @@ public class PowerAmpHelper extends Activity {
         super.onResume();
         PackageManager pm = getPackageManager();
         Intent launch = pm.getLaunchIntentForPackage("com.maxmpz.audioplayer");
-        try {
-            startActivity (launch);
-        } catch(ActivityNotFoundException anf) {
+        if (launch != null) {
+            try {
+                startActivity(launch);
+            } catch (ActivityNotFoundException anf) {
+                finish();
+            }
+        } else {
             finish();
         }
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
